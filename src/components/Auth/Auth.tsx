@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
+import Login from '../Auth/Login/Login'
+import Register from '../Auth/Register/Register'
 
-class auth extends React.Component {
+class auth extends Component {
     render() {
-      return <h1>Hello, I am auth main</h1>;
+
+      
+      return (
+      <div>
+        {/* Login componint  */}
+        <Login>
+        </Login>
+        {/* register componint */}
+        <Register>
+        </Register>
+
+      </div>
+      )
     }
   }
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-class Score extends React.Component {
+class Score extends Component {
     render() {
-      return <h1>Hello, I am auth score</h1>;
+      return <h1>Score</h1>;
     }
   }
 
