@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import TodoItem from './TodoItem';
+import { List } from "antd";
 
-class todos extends React.Component {
+class Todos extends Component {
     render() {
-      return <h1>Hello, I am todos</h1>;
+      return (
+        <div>
+          <TodoItem> </TodoItem>
+          <TodoItem> </TodoItem>
+        </div>
+      )
     }
   }
 
-  export default todos;
+  export default Todos;
