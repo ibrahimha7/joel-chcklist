@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form,Checkbox} from "antd";
+import { Form,Checkbox,Icon,Button} from "antd";
 import { FormComponentProps } from 'antd/es/form'
 
 interface UserFormProps extends FormComponentProps {
@@ -48,17 +48,31 @@ class TodoItem extends Component <UserFormProps,any>{
         
 
           return(
-            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                <Form.Item {...tailFormItemLayout}>
-                {getFieldDecorator('agreement', {
-                    valuePropName: 'checked',
-                })(
-                    <Checkbox>
-                        Todo Title gose here
-                    </Checkbox>,
-                )}
-                </Form.Item>
-            </Form>
+            <div>
+              <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                  <Form.Item {...tailFormItemLayout}>
+                  {getFieldDecorator('agreement', {
+                      valuePropName: 'checked',
+                  })(
+                      <Checkbox>
+                          {'   '}
+                          Todo Title gose here
+                          {'   '}
+                          
+                          
+                      </Checkbox>,
+                      
+                      
+                  )}
+                      <div>
+                        <Icon type="delete" theme="twoTone" twoToneColor="#eb2f96" />
+                      </div>
+                  
+                  </Form.Item>   
+
+              </Form>
+             
+            </div>
 
         )
           
