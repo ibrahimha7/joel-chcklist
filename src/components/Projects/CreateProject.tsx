@@ -15,7 +15,7 @@ interface UserFormProps extends FormComponentProps {
   tags:string;
   score:any;
 }
-class CreateTodo extends Component <UserFormProps,any> {
+class CreateProject extends Component <UserFormProps,any> {
   state = {
     confirmDirty: false,
     autoCompleteResult: [],
@@ -62,29 +62,29 @@ class CreateTodo extends Component <UserFormProps,any> {
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        <Form.Item label="Todo Title">
+        <Form.Item label="Project Title">
           {getFieldDecorator('Field-1', {
             rules: [
               {
                 required: true,
-                message: 'Please input Todo Title',
+                message: 'Please input Project Title',
               },
             ],
           })(<Input />)}
         </Form.Item>
-        <Form.Item label="Todo Description">
+        <Form.Item label="Project Description">
           {getFieldDecorator('Field-2', {
             rules: [
               {
                 required: true,
-                message: 'Please input Todo Title',
+                message: 'Please input Project Title',
               },
             ],
           })(<Input />)}
         </Form.Item>
 
 
-        <Form.Item label="Todo Range Date">
+        <Form.Item label="Project Range Date">
         {getFieldDecorator('range-picker', rangeConfig)(<RangePicker />)}
         </Form.Item>
 
@@ -92,24 +92,20 @@ class CreateTodo extends Component <UserFormProps,any> {
 
         
         
-        <Form.Item label="Todo tags">
+        <Form.Item label="Project tags">
           {getFieldDecorator('Field-3', {
             rules: [
               {
                 required: true,
-                message: 'Please input Todo Title',
+                message: 'Please input Project Title',
               },
             ],
           })(<Input />)}
         </Form.Item>
 
-        
-
-
-        
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
-            Create Todo
+            Create Project
           </Button>
         </Form.Item>
       </Form>
@@ -119,7 +115,7 @@ class CreateTodo extends Component <UserFormProps,any> {
 }
 
 
-const WrappedNormalTodoForm = Form.create({ name: 'normal_CreateTodo' })(CreateTodo);
+const WrappedNormalProjectForm = Form.create({ name: 'normal_CreateProject' })(CreateProject);
 
 
-export default WrappedNormalTodoForm;
+export default WrappedNormalProjectForm;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Todos from '../Todos/Todos'
-import TodosContainer from '../Container/TodosContainer'
+import Projects from '../Projects/ProjectsList'
+import ProjectsContainer from './ProjectsContainer'
 
 import Auth from '../Auth/Auth'
 import Score from '../Score/Score'
@@ -33,14 +33,14 @@ class Container extends Component {
           <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>
 
             <div>
-              <TodosContainer> </TodosContainer>
+              <ProjectsContainer> </ProjectsContainer>
             </div>
 
             <div>
               <Auth> </Auth>
             </div>
             <div>
-              <Todos></Todos>
+              <Projects></Projects>
               <Score></Score>
             </div>
           </div>
