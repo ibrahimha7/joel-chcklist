@@ -87,6 +87,27 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
 
       return (
         <Form {...formItemLayout} onSubmit={handleSubmit}>
+          <Form.Item label="First Name">
+            {getFieldDecorator('first name', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your E-mail!',
+                },
+              ],
+            })(<Input />)}
+          </Form.Item>
+          <Form.Item label="Last Name">
+            {getFieldDecorator('last name', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Please input your E-mail!',
+                },
+              ],
+            })(<Input />)}
+          </Form.Item>
+          
           <Form.Item label="E-mail">
             {getFieldDecorator('email', {
               rules: [
