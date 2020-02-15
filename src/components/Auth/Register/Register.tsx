@@ -65,6 +65,9 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
       
 
       return (
+        <div>
+        <h1>Register</h1>
+        
         <Form onSubmit={handleSubmit} className="login-form" style={{ width:'50%' , display:'inline-block'}}>
           <Form.Item>
             {getFieldDecorator('first name', {
@@ -179,6 +182,7 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
             </Button>
           </Form.Item>
         </Form>
+        </div>
       );
     }
 

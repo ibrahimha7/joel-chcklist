@@ -56,6 +56,7 @@ const ProjectItem:React.FC<Props> = ()  =>  {
 
       return(
             <div>
+              <h1>Project List </h1>
               <List
                 dataSource={[
                   {
@@ -78,9 +79,9 @@ const ProjectItem:React.FC<Props> = ()  =>  {
                     actions={[
                       <Tag color="purple">Yousf</Tag>,
                       <Tag color="green">Easa</Tag>,
-                      <a onClick={showDrawer} key={`a-${item.id}`}>
-                        5/12 {'   '} {'   '}
-                        <Button type="primary" icon="profile"  />
+                      <a style={{marginLeft:'1.5rem'}}  onClick={showDrawer} key={`a-${item.id}`}>
+                        5/12 
+                        <Button type="primary" icon="profile" style={{marginLeft:'3rem'}} />
                       </a>,
                     ]}
                   >
@@ -89,7 +90,7 @@ const ProjectItem:React.FC<Props> = ()  =>  {
                         <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
                       }
                       title={<a href="https://ant.design/index-cn">{item.name}</a>}
-                      description="Progresser XTech"
+                      description={<p >Progresser XTech</p>}
                     />
                   </List.Item>
                 )}
