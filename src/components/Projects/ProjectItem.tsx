@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Drawer, List, Avatar, Divider, Col, Row,Tag,Button } from 'antd';
 
+import { DrawerProps } from 'antd/es/drawer'
 
 
 const pStyle = {
@@ -34,21 +35,22 @@ const DescriptionItem = ( wholeObject: { title:any, content:any }) => (
   </div>
 );
 
-interface Props{
-  visable?:boolean
+interface Props extends DrawerProps{
+  
 }
 
 
 
-const ProjectItem:React.FC<Props> = (visable)  =>  {
+const ProjectItem:React.FC<Props> = ()  =>  {
 
-  const [value, setvalue] = useState()
+  const [value, setValue] = useState()
 
   const showDrawer = () => {
-    const setvalue = (true)
+    setValue(true)
+    
   };
    const onClose = () => {
-    const setvalue=(false)
+    setValue(false)
   };
 
       return(
@@ -75,7 +77,7 @@ const ProjectItem:React.FC<Props> = (visable)  =>  {
                     actions={[
                       <Tag color="purple">Yousf</Tag>,
                       <Tag color="green">Easa</Tag>,
-                      <a onClick={event => showDrawer} key={`a-${item.id}`}>
+                      <a onClick={showDrawer} key={`a-${item.id}`}>
                         5/12 {'   '} {'   '}
                         <Button type="primary" icon="profile"  />
                       </a>,
