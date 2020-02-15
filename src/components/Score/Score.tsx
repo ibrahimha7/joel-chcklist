@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Score extends Component {
-    render() {
+const Score:React.FC = () => {
       return <h1>Score</h1>;
     }
-  }
-
   export default Score;

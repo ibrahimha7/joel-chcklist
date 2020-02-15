@@ -1,39 +1,40 @@
 import React, { useState } from 'react';
-import { Drawer, List, Avatar, Divider, Col, Row,Tag,Button } from 'antd';
+import { Drawer, List, Avatar, Button ,Tag } from 'antd';
 
 import { DrawerProps } from 'antd/es/drawer'
 
 
-const pStyle = {
-  fontSize: 16,
-  color: 'rgba(0,0,0,0.85)',
-  lineHeight: '24px',
-  display: 'block',
-  marginBottom: 16,
-};
+// const pStyle = {
+//   fontSize: 16,
+//   color: 'rgba(0,0,0,0.85)',
+//   lineHeight: '24px',
+//   display: 'block',
+//   marginBottom: 16,
+// };
 
 // Property-renaming
-const DescriptionItem = ( wholeObject: { title:any, content:any }) => (
-  <div
-    style={{
-      fontSize: 14,
-      lineHeight: '22px',
-      marginBottom: 7,
-      color: 'rgba(0,0,0,0.65)',
-    }}
-  >
-    <p
-      style={{
-        marginRight: 8,
-        display: 'inline-block',
-        color: 'rgba(0,0,0,0.85)',
-      }}
-    >
-      {wholeObject.title}:
-    </p>
-    {wholeObject.content}
-  </div>
-);
+
+// const DescriptionItem = ( wholeObject: { title:any, content:any }) => (
+//   <div
+//     style={{
+//       fontSize: 14,
+//       lineHeight: '22px',
+//       marginBottom: 7,
+//       color: 'rgba(0,0,0,0.65)',
+//     }}
+//   >
+//     <p
+//       style={{
+//         marginRight: 8,
+//         display: 'inline-block',
+//         color: 'rgba(0,0,0,0.85)',
+//       }}
+//     >
+//       {wholeObject.title}:
+//     </p>
+//     {wholeObject.content}
+//   </div>
+// );
 
 interface Props extends DrawerProps{
   

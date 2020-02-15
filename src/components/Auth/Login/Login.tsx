@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import Password from 'antd/lib/input/Password';
 
@@ -6,7 +6,7 @@ import { FormComponentProps } from 'antd/es/form';
 
 interface UserFormProps extends FormComponentProps {
   username:string
-  password:string
+  password:Password
   form:any
 }
 
@@ -14,10 +14,9 @@ interface UserFormProps extends FormComponentProps {
 
 
 const Login:React.FC<UserFormProps> = ( { username,password,form} ) => {
-  const [ value , setValue ] = useState('');
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    form.validateFields((err:any, values:any) => {
+    form.validateFields((err:string, values:string) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }

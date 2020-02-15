@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Input, Button, DatePicker } from 'antd';
 
@@ -17,7 +17,6 @@ interface UserFormProps extends FormComponentProps {
   form:any
 }
 const CreateProject:React.FC<UserFormProps> = ({ form, title , description ,startDate ,endDate ,tags,score }) => {
-  const [ value , setValue ] = useState('');
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     form.validateFieldsAndScroll((err:string, values:string) => {

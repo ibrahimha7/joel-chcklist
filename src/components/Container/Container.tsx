@@ -1,10 +1,5 @@
-import React, { useState,useRef} from 'react';
-
-import Projects from '../Projects/ProjectsList'
+import React from 'react';
 import ProjectsContainer from './ProjectsContainer'
-
-import Auth from '../Auth/Auth'
-import Score from '../Score/Score'
 import { Layout, Menu, Breadcrumb } from 'antd';
 
 const { Header, Content, Footer } = Layout;

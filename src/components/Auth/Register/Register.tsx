@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Form, Icon, Input, Button, Checkbox,Tooltip } from 'antd';
 import Password from 'antd/lib/input/Password';
@@ -19,8 +19,6 @@ interface UserFormProps extends FormComponentProps {
 }
 
 const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,password,form}) => {
-    const [ value , setValue ] = useState('');
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       form.validateFieldsAndScroll((err:string, values:string) => {
@@ -31,12 +29,12 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
     };
 
     const handleConfirmBlur = (e: React.FocusEvent<HTMLFormElement>) => {
-      const { value } = e.target as HTMLFormElement;
-      const setValue = () => ({ confirmDirty: value.confirmDirty || !!value });
+      // const { value } = e.target as HTMLFormElement;
+      // const setValue = () => ({ confirmDirty: value.confirmDirty || !!value });
     };
 
     const compareToFirstPassword = (rule:any, value:any, callback:any) => {
-      const { form:any } = form;
+      // const { form:any } = form;
       if (value && value !== form.getFieldValue('password')) {
         callback('Two passwords that you enter is inconsistent!');
       } else {
@@ -45,22 +43,22 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
     };
 
     const validateToNextPassword = (rule:any, value:any, callback:any) => {
-      const { form:any } = form;
+      // const { form:any } = form;
       if (value && value.confirmDirty) {
         form.validateFields(['confirm'], { force: true });
       }
       callback();
     };
 
-    const handleWebsiteChange = (value:any) => {
-      let autoCompleteResult:any;
-      if (!value) {
-        autoCompleteResult = [];
-      } else {
-        autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-      }
-      const setValue = ({ autoCompleteResult });
-    };
+    // const handleWebsiteChange = (value:any) => {
+    //   let autoCompleteResult:any;
+    //   if (!value) {
+    //     autoCompleteResult = [];
+    //   } else {
+    //     autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
+    //   }
+    //   const setValue = ({ autoCompleteResult });
+    // };
 
       const { getFieldDecorator } = form;
 

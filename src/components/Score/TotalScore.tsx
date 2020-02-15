@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
-class TotalScore extends Component {
-    render() {
-      
-      return <h1>and I am should be handling the joel checklist score</h1>;
-    }
+const TotalScore:React.FC = () => {
+    return <div>
+      <h1>and I am should be handling the joel checklist score</h1>;
+    </div>
   }
-
   export default TotalScore;
