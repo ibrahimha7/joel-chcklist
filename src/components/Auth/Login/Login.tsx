@@ -24,14 +24,15 @@ const Login:React.FC<UserFormProps> = ( { username,password,form} ) => {
   };
 
     const { getFieldDecorator } = form;
-    return (
-      <Form onSubmit={handleSubmit} className="login-form">
+    return ( <div>
+      <h1>Login</h1>
+      <Form onSubmit={handleSubmit} className="login-form" style={{ width:'50%' , display:'inline-block'}}>
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
           })(
             <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Username"
             />,
           )}
@@ -65,7 +66,9 @@ const Login:React.FC<UserFormProps> = ( { username,password,form} ) => {
           </Button>
         </Form.Item>
       </Form>
+      </div>
     );
+    
   }
 
 

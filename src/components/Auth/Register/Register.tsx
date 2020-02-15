@@ -62,42 +62,26 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
 
       const { getFieldDecorator } = form;
 
-      const formItemLayout = {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 8 },
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 16 },
-        },
-      };
-      const tailFormItemLayout = {
-        wrapperCol: {
-          xs: {
-            span: 24,
-            offset: 0,
-          },
-          sm: {
-            span: 16,
-            offset: 8,
-          },
-        },
-      }
+      
 
       return (
-        <Form {...formItemLayout} onSubmit={handleSubmit}>
-          <Form.Item label="First Name">
+        <Form onSubmit={handleSubmit} className="login-form" style={{ width:'50%' , display:'inline-block'}}>
+          <Form.Item>
             {getFieldDecorator('first name', {
               rules: [
                 {
                   required: true,
-                  message: 'Please input your E-mail!',
+                  message: 'Please input your First Name!',
                 },
               ],
-            })(<Input />)}
+            })(
+              <Input
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="First Name"
+            />
+            )}
           </Form.Item>
-          <Form.Item label="Last Name">
+          <Form.Item>
             {getFieldDecorator('last name', {
               rules: [
                 {
@@ -105,10 +89,15 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
                   message: 'Please input your E-mail!',
                 },
               ],
-            })(<Input />)}
+            })(
+            <Input
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Last Name"
+            />
+            )}
           </Form.Item>
           
-          <Form.Item label="E-mail">
+          <Form.Item >
             {getFieldDecorator('email', {
               rules: [
                 {
@@ -120,9 +109,14 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
                   message: 'Please input your E-mail!',
                 },
               ],
-            })(<Input />)}
+            })(
+              <Input
+              prefix={<Icon type="mail" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Email"
+            />
+            )}
           </Form.Item>
-          <Form.Item label="Password" hasFeedback>
+          <Form.Item hasFeedback>
             {getFieldDecorator('password', {
               rules: [
                 {
@@ -133,9 +127,14 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
                   validator: validateToNextPassword,
                 },
               ],
-            })(<Input.Password />)}
+            })(
+              <Input.Password
+              prefix={<Icon type="alert" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Password"
+            />
+            )}
           </Form.Item>
-          <Form.Item label="Confirm Password" hasFeedback>
+          <Form.Item  hasFeedback>
             {getFieldDecorator('confirm', {
               rules: [
                 {
@@ -146,25 +145,26 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
                   validator: compareToFirstPassword,
                 },
               ],
-            })(<Input.Password onBlur={()=> (handleConfirmBlur)} />)}
+            })(
+              <Input.Password
+              prefix={<Icon type="alert" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder=" Confirm Password"
+              onBlur={()=> (handleConfirmBlur)} />
+               )}
           </Form.Item>
           
-          <Form.Item
-            label={
-              <span>
-                Username&nbsp;
-                <Tooltip title="What do you want others to call you?">
-                  <Icon type="question-circle-o" />
-                </Tooltip>
-              </span>
-            }
-          >
+          <Form.Item>
             {getFieldDecorator('username', {
               rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
-            })(<Input />)}
+            })(
+              <Input
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Username"
+            />
+            )}
           </Form.Item>
           
-          <Form.Item {...tailFormItemLayout}>
+          <Form.Item >
             {getFieldDecorator('agreement', {
               valuePropName: 'checked',
             })(
@@ -173,7 +173,7 @@ const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,pas
               </Checkbox>,
             )}
           </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
+          <Form.Item >
             <Button type="primary" htmlType="submit">
               Register
             </Button>

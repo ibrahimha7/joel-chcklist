@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Form, Input, Button, DatePicker } from 'antd';
+import { Form, Input, Button, DatePicker ,Icon} from 'antd';
 
 
 import { FormComponentProps } from 'antd/es/form'
@@ -31,32 +31,15 @@ const CreateProject:React.FC<UserFormProps> = ({ form, title , description ,star
       rules: [{ type: 'array', required: true, message: 'Please select time!' }],
     };
 
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    }
 
     return (
-      <Form {...formItemLayout} onSubmit={handleSubmit}>
-        <Form.Item label="Project Title">
+      <div>
+        <br/>
+        <br/>
+
+      <h1>Add New Project</h1>
+      <Form onSubmit={handleSubmit} style={{ width:'50%' , display:'inline-block'}}>
+        <Form.Item >
           {getFieldDecorator('Field-1', {
             rules: [
               {
@@ -64,40 +47,56 @@ const CreateProject:React.FC<UserFormProps> = ({ form, title , description ,star
                 message: 'Please input Project Title',
               },
             ],
-          })(<Input />)}
+          })(
+            <Input
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Project Title"
+            />
+          )}
         </Form.Item>
-        <Form.Item label="Project Description">
+        <Form.Item >
           {getFieldDecorator('Field-2', {
             rules: [
               {
                 required: true,
-                message: 'Please input Project Title',
+                message: 'Please input Project Description',
               },
             ],
-          })(<Input />)}
+          })(
+            <Input
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Project Description"
+            />
+          )}
         </Form.Item>
 
-        <Form.Item label="Project Range Date">
+        <Form.Item >
         {getFieldDecorator('range-picker', rangeConfig)(<RangePicker />)}
         </Form.Item>
 
-        <Form.Item label="Project tags">
+        <Form.Item >
           {getFieldDecorator('Field-3', {
             rules: [
               {
                 required: true,
-                message: 'Please input Project Title',
+                message: 'Please input Project Tags',
               },
             ],
-          })(<Input />)}
+          })(
+            <Input
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)' }} />}
+              placeholder="Project Tags"
+            />
+          )}
         </Form.Item>
 
-        <Form.Item {...tailFormItemLayout}>
+        <Form.Item >
           <Button type="primary" htmlType="submit">
             Create Project
           </Button>
         </Form.Item>
       </Form>
+      </div>
     );
   }
 export default Form.create()(CreateProject);

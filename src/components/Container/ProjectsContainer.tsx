@@ -8,16 +8,11 @@ import ProjectsList from '../Projects/ProjectsList'
 
 const ProjectsContainer = ()=>{
       return (
-        <div>
+        <div>      
             <Route path="/login" exact render = { () => <Login />}/>
             <Route path="/register" exact render = { () => <Register /> }/>
             <Route path="/" exact render = { () => <ProjectsList /> }/>
-            <Route path="/" exact render = { () => <CreateProject /> }/>
-
-            
-            
-            
-                     
+            <Route path="/" exact render = { () => <CreateProject /> }/>            
         </div>
         )
     } 
