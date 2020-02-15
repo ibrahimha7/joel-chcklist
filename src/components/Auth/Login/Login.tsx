@@ -1,29 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import Password from 'antd/lib/input/Password';
 
 import { FormComponentProps } from 'antd/es/form';
 
 interface UserFormProps extends FormComponentProps {
-  username: string;
-  password: Password;
+  username:string
+  password:string
+  form:any
 }
 
 
-class Login extends Component <UserFormProps,any> {
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+
+const Login:React.FC<UserFormProps> = ( { username,password,form} ) => {
+  const [ value , setValue ] = useState('');
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.props.form.validateFields((err:any, values:any) => {
+    form.validateFields((err:any, values:any) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
     });
   };
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = form;
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
+      <Form onSubmit={handleSubmit} className="login-form">
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],
@@ -65,9 +68,8 @@ class Login extends Component <UserFormProps,any> {
       </Form>
     );
   }
-}
-
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(Login);
 
 
-  export default WrappedNormalLoginForm;
+
+
+  export default Form.create()(Login);

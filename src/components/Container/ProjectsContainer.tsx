@@ -1,15 +1,18 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import CreateProject from '../Projects/CreateProject';
+import Login from '../Auth/Login/Login'
+import Register from '../Auth/Register/Register'
+import ProjectsList from '../Projects/ProjectsList'
 
-class ProjectsContainer extends Component {
-    render() { 
+
+const ProjectsContainer = ()=>{
       return (
         <div>
-            <CreateProject></CreateProject>
+            <CreateProject />
+            <Login />
+            <Register />
+            <ProjectsList />          
         </div>
         )
-    }
-      
-  }
-
+    } 
   export default ProjectsContainer;

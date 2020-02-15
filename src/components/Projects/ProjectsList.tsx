@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React, { } from 'react';
 import ProjectItem from './ProjectItem';
 
-class ProjectsList extends Component {
-    render() {
-      return (
+const ProjectsList:React.FC = () => {
+      
+  return (
         <div>
-          <ProjectItem> </ProjectItem>
+
+          <ProjectItem />
         </div>
       )
     }
-  }
-
   export default ProjectsList;

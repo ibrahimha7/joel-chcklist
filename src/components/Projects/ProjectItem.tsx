@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Drawer, List, Avatar, Divider, Col, Row,Tag,Button } from 'antd';
 
 
@@ -34,42 +34,24 @@ const DescriptionItem = ( wholeObject: { title:any, content:any }) => (
   </div>
 );
 
-interface IProps {
-}
-
-interface IState {
-  visible?:boolean
+interface Props{
+  visable?:boolean
 }
 
 
-class ProjectItem extends Component <IProps, IState> {
 
-  constructor(props: IProps) {
-    super(props);
+const ProjectItem:React.FC<Props> = (visable)  =>  {
 
-    this.state = {
-      visible: false,
-    };
-  }
-  showDrawer = () => {
-    this.setState({
-      visible: true,
-    });
+  const [value, setvalue] = useState()
+
+  const showDrawer = () => {
+    const setvalue = (true)
   };
-  
-    onClose = () => {
-      this.setState({
-        visible: false,
-      });
-    };
-    
-  
+   const onClose = () => {
+    const setvalue=(false)
+  };
 
-
-
-  render() { 
-        
-        return(
+      return(
             <div>
               <List
                 dataSource={[
@@ -91,9 +73,9 @@ class ProjectItem extends Component <IProps, IState> {
                   <List.Item
                     key={item.id}
                     actions={[
-                      <Tag color="geekblue">geekblue</Tag>,
-                      <Tag color="geekblue">geekblue</Tag>,
-                      <a onClick={this.showDrawer} key={`a-${item.id}`}>
+                      <Tag color="purple">Yousf</Tag>,
+                      <Tag color="green">Easa</Tag>,
+                      <a onClick={event => showDrawer} key={`a-${item.id}`}>
                         5/12 {'   '} {'   '}
                         <Button type="primary" icon="profile"  />
                       </a>,
@@ -113,8 +95,8 @@ class ProjectItem extends Component <IProps, IState> {
                 width={640}
                 placement="right"
                 closable={false}
-                onClose={this.onClose}
-                visible={this.state.visible}
+                onClose={onClose}
+                visible = {value}
               >
                 <h3>Joel Test Result</h3>
               </Drawer>
@@ -125,8 +107,5 @@ class ProjectItem extends Component <IProps, IState> {
           
   
     }
-  }
-
-
 
   export default ProjectItem;

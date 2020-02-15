@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { Form, Input, Button, DatePicker } from 'antd';
 
@@ -14,24 +14,19 @@ interface UserFormProps extends FormComponentProps {
   endDate:Date;
   tags:string;
   score:any;
+  form:any
 }
-class CreateProject extends Component <UserFormProps,any> {
-  state = {
-    confirmDirty: false,
-    autoCompleteResult: [],
-  };
-
-  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+const CreateProject:React.FC<UserFormProps> = ({ form, title , description ,startDate ,endDate ,tags,score }) => {
+  const [ value , setValue ] = useState('');
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err, values) => {
+    form.validateFieldsAndScroll((err:string, values:string) => {
       if (!err) {
         console.log('Received values of form: ', values);
       }
     });
   };
-
-  render() {
-    const { getFieldDecorator } = this.props.form;
+    const { getFieldDecorator } = form;
     const { RangePicker } = DatePicker;
     const rangeConfig = {
       rules: [{ type: 'array', required: true, message: 'Please select time!' }],
@@ -61,7 +56,7 @@ class CreateProject extends Component <UserFormProps,any> {
     }
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+      <Form {...formItemLayout} onSubmit={handleSubmit}>
         <Form.Item label="Project Title">
           {getFieldDecorator('Field-1', {
             rules: [
@@ -83,15 +78,10 @@ class CreateProject extends Component <UserFormProps,any> {
           })(<Input />)}
         </Form.Item>
 
-
         <Form.Item label="Project Range Date">
         {getFieldDecorator('range-picker', rangeConfig)(<RangePicker />)}
         </Form.Item>
 
-        
-
-        
-        
         <Form.Item label="Project tags">
           {getFieldDecorator('Field-3', {
             rules: [
@@ -111,11 +101,4 @@ class CreateProject extends Component <UserFormProps,any> {
       </Form>
     );
   }
-
-}
-
-
-const WrappedNormalProjectForm = Form.create({ name: 'normal_CreateProject' })(CreateProject);
-
-
-export default WrappedNormalProjectForm;
+export default Form.create()(CreateProject);

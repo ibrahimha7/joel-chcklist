@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import { Form, Icon, Input, Button, Checkbox,Tooltip } from 'antd';
 import Password from 'antd/lib/input/Password';
@@ -13,30 +13,30 @@ interface UserFormProps extends FormComponentProps {
   username: string;
   email:string;
   password: Password;
+
+  form:any
+  
 }
 
-class Register extends Component <UserFormProps,any> {
-    state = {
-      confirmDirty: false,
-      autoCompleteResult: [],
-    };
+const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,password,form}) => {
+    const [ value , setValue ] = useState('');
 
-    handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      this.props.form.validateFieldsAndScroll((err, values) => {
+      form.validateFieldsAndScroll((err:string, values:string) => {
         if (!err) {
           console.log('Received values of form: ', values);
         }
       });
     };
 
-    handleConfirmBlur = (e: React.FocusEvent<HTMLFormElement>) => {
+    const handleConfirmBlur = (e: React.FocusEvent<HTMLFormElement>) => {
       const { value } = e.target as HTMLFormElement;
-      this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+      const setValue = () => ({ confirmDirty: value.confirmDirty || !!value });
     };
 
-    compareToFirstPassword = (rule:any, value:any, callback:any) => {
-      const { form } = this.props;
+    const compareToFirstPassword = (rule:any, value:any, callback:any) => {
+      const { form:any } = form;
       if (value && value !== form.getFieldValue('password')) {
         callback('Two passwords that you enter is inconsistent!');
       } else {
@@ -44,26 +44,25 @@ class Register extends Component <UserFormProps,any> {
       }
     };
 
-    validateToNextPassword = (rule:any, value:any, callback:any) => {
-      const { form } = this.props;
-      if (value && this.state.confirmDirty) {
+    const validateToNextPassword = (rule:any, value:any, callback:any) => {
+      const { form:any } = form;
+      if (value && value.confirmDirty) {
         form.validateFields(['confirm'], { force: true });
       }
       callback();
     };
 
-    handleWebsiteChange = (value:any) => {
+    const handleWebsiteChange = (value:any) => {
       let autoCompleteResult:any;
       if (!value) {
         autoCompleteResult = [];
       } else {
         autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
       }
-      this.setState({ autoCompleteResult });
+      const setValue = ({ autoCompleteResult });
     };
 
-    render() {
-      const { getFieldDecorator } = this.props.form;
+      const { getFieldDecorator } = form;
 
       const formItemLayout = {
         labelCol: {
@@ -89,7 +88,7 @@ class Register extends Component <UserFormProps,any> {
       }
 
       return (
-        <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+        <Form {...formItemLayout} onSubmit={handleSubmit}>
           <Form.Item label="E-mail">
             {getFieldDecorator('email', {
               rules: [
@@ -112,7 +111,7 @@ class Register extends Component <UserFormProps,any> {
                   message: 'Please input your password!',
                 },
                 {
-                  validator: this.validateToNextPassword,
+                  validator: validateToNextPassword,
                 },
               ],
             })(<Input.Password />)}
@@ -125,10 +124,10 @@ class Register extends Component <UserFormProps,any> {
                   message: 'Please confirm your password!',
                 },
                 {
-                  validator: this.compareToFirstPassword,
+                  validator: compareToFirstPassword,
                 },
               ],
-            })(<Input.Password onBlur={()=> (this.handleConfirmBlur)} />)}
+            })(<Input.Password onBlur={()=> (handleConfirmBlur)} />)}
           </Form.Item>
           
           <Form.Item
@@ -164,10 +163,5 @@ class Register extends Component <UserFormProps,any> {
       );
     }
 
-  }
 
-
-const WrappedNormalRegForm = Form.create({ name: 'normal_register' })(Register);
-
-
-export default WrappedNormalRegForm;
+export default Form.create()(Register);;
