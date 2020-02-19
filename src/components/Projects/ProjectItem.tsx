@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Drawer, List, Avatar, Button ,Tag } from 'antd';
-
 import { DrawerProps } from 'antd/es/drawer'
 
+import Score from '../Score/Score'
 
 // const pStyle = {
 //   fontSize: 16,
@@ -102,7 +102,9 @@ const ProjectItem:React.FC<Props> = ()  =>  {
                 onClose={onClose}
                 visible = {value}
               >
-                <h3>Joel Test Result</h3>
+                {/* here's gose the joel-checklist todos  */}
+                
+                <Score />
               </Drawer>
             </div>
 
