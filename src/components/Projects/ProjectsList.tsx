@@ -6,7 +6,7 @@ const ProjectsList:React.FC = () => {
   return (
         <div>
 
-          <ProjectItem  style={{ width:'50%' , display:'inline-block'}} />
+          <ProjectItem />
         </div>
       )
     }

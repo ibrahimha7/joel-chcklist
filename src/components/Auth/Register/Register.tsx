@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { Form, Icon, Input, Button, Checkbox,Tooltip } from 'antd';
+import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import Password from 'antd/lib/input/Password';
 
 import { FormComponentProps } from 'antd/es/form'
+
+import {useFirebase} from '../../Firebase/FirebaseContext'
 
 
 
@@ -19,11 +21,19 @@ interface UserFormProps extends FormComponentProps {
 }
 
 const Register:React.FC<UserFormProps> = ({firstName,lastName,username,email,password,form}) => {
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  // react using firebase 
+  const firebase = useFirebase();
+  console.log(firebase)
+
+  
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       form.validateFieldsAndScroll((err:string, values:string) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          firebase.users().push(values, () => {
+            console.log('new user has been added');
+          })
+          // console.log('Received values of form: ', values);
         }
       });
     };

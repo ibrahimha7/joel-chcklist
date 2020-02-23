@@ -57,7 +57,7 @@ const ProjectItem:React.FC<Props> = ()  =>  {
       return(
             <div>
               <h1>Project List </h1>
-              <List
+              <List className="project-section__table"
                 dataSource={[
                   {
                     id:1,
@@ -79,7 +79,7 @@ const ProjectItem:React.FC<Props> = ()  =>  {
                     actions={[
                       <Tag color="purple">Yousf</Tag>,
                       <Tag color="green">Easa</Tag>,
-                      <a style={{marginLeft:'1.5rem'}}  onClick={showDrawer} key={`a-${item.id}`}>
+                      <a href="/#" style={{marginLeft:'1.5rem'}}  onClick={showDrawer} key={`a-${item.id}`}>
                         5/12 
                         <Button type="primary" icon="profile" style={{marginLeft:'3rem'}} />
                       </a>,
