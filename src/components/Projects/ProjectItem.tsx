@@ -1,117 +1,129 @@
-import React, { useState } from 'react';
-import { Drawer, List, Avatar, Button ,Tag } from 'antd';
+import React, { useState, useEffect,useCallback } from 'react';
+import { Drawer, List, Avatar, Button, Tag, Table, Typography } from 'antd';
 import { DrawerProps } from 'antd/es/drawer'
 
 import Score from '../Score/Score'
+import Checklist from 'components/Checklist/Checklist';
+import { useFirebase } from 'components/Firebase/FirebaseContext'
+import 'components/Projects/style.scss'
 
-// const pStyle = {
-//   fontSize: 16,
-//   color: 'rgba(0,0,0,0.85)',
-//   lineHeight: '24px',
-//   display: 'block',
-//   marginBottom: 16,
-// };
 
-// Property-renaming
+interface IProps {
+  checklist: {
+      key: number
+      text: string
+  }
+}
 
-// const DescriptionItem = ( wholeObject: { title:any, content:any }) => (
-//   <div
-//     style={{
-//       fontSize: 14,
-//       lineHeight: '22px',
-//       marginBottom: 7,
-//       color: 'rgba(0,0,0,0.65)',
-//     }}
-//   >
-//     <p
-//       style={{
-//         marginRight: 8,
-//         display: 'inline-block',
-//         color: 'rgba(0,0,0,0.85)',
-//       }}
-//     >
-//       {wholeObject.title}:
-//     </p>
-//     {wholeObject.content}
-//   </div>
-// );
-
-interface Props extends DrawerProps{
-  
+interface IProjects {
+  id: string
+  projectTitle: string
+  endDate: string
+  projectDescription: string
+  score: number
+  startDate: string
 }
 
 
+const columns = [
+  {
+    title: 'Project Title',
+    dataIndex: 'projectTitle',
+  },
 
-const ProjectItem:React.FC<Props> = ()  =>  {
+];
 
-  const [value, setValue] = useState()
+const { Title, Text } = Typography
 
-  const showDrawer = () => {
-    setValue(true)
+const ProjectItem: React.FC = () => {
+  const firebase = useFirebase();
+  const [projectsListValue, setprojectsListValue] = useState([{
+    id: '0', projectTitle: '0', endDate: 'CId',
+    projectDescription: 'contentId', score: 0, startDate: 'contentId', tags: [],checklist: []
+  }])
+  const [value, setValue] = useState(false)
+  const [checklistPassValue, setchecklistPassValue] = useState([{}])
+
+  const showDrawer = (value:Array<Object>) => {
     
+    // const data = value.map((value:any,index:any) => ( 
+    //   console.log(value.key),
+    //   console.log(value.text),
+    //   setchecklistPassValue(value.text)
+    //   ));
+    setValue(true)
   };
-   const onClose = () => {
+  const onClose = () => {
     setValue(false)
   };
-
-      return(
-            <div>
-              <h1>Project List </h1>
-              <List className="project-section__table"
-                dataSource={[
-                  {
-                    id:1,
-                    name: 'Lily',
-                  },
-                  {
-                    id:2,
-                    name: 'Ahmad',
-                  },
-                  {
-                    id:3,
-                    name: 'Doe',
-                  },
-                ]}
-                bordered
-                renderItem={item => (
-                  <List.Item
-                    key={item.id}
-                    actions={[
-                      <Tag color="purple">Yousf</Tag>,
-                      <Tag color="green">Easa</Tag>,
-                      <a href="/#" style={{marginLeft:'1.5rem'}}  onClick={showDrawer} key={`a-${item.id}`}>
-                        5/12 
-                        <Button type="primary" icon="profile" style={{marginLeft:'3rem'}} />
-                      </a>,
-                    ]}
-                  >
-                    <List.Item.Meta
-                      avatar={
-                        <Avatar src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png" />
-                      }
-                      title={<a href="https://ant.design/index-cn">{item.name}</a>}
-                      description={<p >Progresser XTech</p>}
-                    />
-                  </List.Item>
-                )}
-              />
-              <Drawer
-                width={640}
-                placement="right"
-                closable={false}
-                onClose={onClose}
-                visible = {value}
-              >
-                {/* here's gose the joel-checklist todos  */}
-                
-                <Score />
-              </Drawer>
-            </div>
-
-
-        )
-          
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      firebase.projects().once('value', (snapshot: any) => {
+        const data = snapshot.val();
+        setprojectsListValue(data);
+      });
     }
+    fetchData();
+  });
 
-  export default ProjectItem;
+  return (
+    <>
+      <h1>Project List </h1>
+
+      <div className={"container-table100"}>
+        <div className={"wrap-table100"}>
+          <div className={"table100 ver1 m-b-110"}>
+            <table >
+              <thead>
+                <tr className={"row100 head"}>
+                  <th className={"cell100 column1"}>Project Title</th>
+                  <th className={"cell100 column2"}>Project Description</th>
+                  <th className={"cell100 column1"}>Project Start Date</th>
+                  <th className={"cell100 column1"}>Project End Date</th>
+                  <th className={"cell100 column1"}>Project Tags </th>
+                  <th className={"cell100 column1"}>Project Score </th>
+                </tr>
+              </thead>
+              {Object.keys(projectsListValue).map((keyName: any, index) => {
+                return (
+                  <tbody>
+                    <tr className={"row100 body"} key={projectsListValue[keyName].id} >
+                      <td className={"cell100 column1"}> <Title level={4}> {projectsListValue[keyName].projectTitle} </Title> </td>
+                      <td className={"cell100 column2"}> <text> {projectsListValue[keyName].projectTitle} </text> </td>
+                      <td className={"cell100 column3"}> <text> {projectsListValue[keyName].startDate} </text> </td>
+                      <td className={"cell100 column4"} > <text> {projectsListValue[keyName].endDate} </text> </td>
+                      <td className={"cell100 column5"} > <text> {projectsListValue[keyName].tags} </text> </td>
+                      <td className={"cell100 column5"} > <Button type="primary"   onClick={() => {showDrawer ( projectsListValue[keyName].checklist ) } } > {projectsListValue[keyName].score} </Button> </td>
+                      {/* <td className={"cell100 column5"} > <Button type="primary"   onClick={myHandleClick} > {projectsListValue[keyName].score} </Button> </td> */}
+                    </tr>
+                  </tbody>
+                )
+              })
+              }
+
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+      <Drawer
+        width={640}
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        visible={value}
+      >
+        {/* here's gose the joel-checklist todos  */}
+
+        <Checklist />
+      </Drawer>
+    </>
+
+
+  )
+
+
+}
+
+export default ProjectItem;
