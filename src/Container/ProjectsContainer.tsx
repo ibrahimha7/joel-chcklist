@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import CreateProject from '../Projects/CreateProject';
-import Login from '../Auth/Login/Login'
-import Register from '../Auth/Register/Register'
-import ProjectsList from '../Projects/ProjectsList'
+import CreateProject from '../components/Projects/CreateProject'
+import Login from '../components/Auth/Login/Login'
+import Register from '../components/Auth/Register/Register'
+import ProjectsList from '../components/Projects/ProjectsList'
 
 
 const ProjectsContainer = ()=>{

@@ -10,14 +10,13 @@ interface AddTodo{
   textInput: (text:string) => void
 }
 
-
-
 interface Props{
   todo:SingleTodo
   index:number
   completeTodo: (index:number) => void
   removeTodo: (index:number) => void
 }
+
 const Todo:React.FC<Props> = ( { todo , index ,completeTodo , removeTodo  } ) => {
   return <div style={ { textDecoration:todo.isCompleted ? 'line-through' : '' } } className="todo"> 
   { todo.text }
@@ -29,7 +28,6 @@ const Todo:React.FC<Props> = ( { todo , index ,completeTodo , removeTodo  } ) =>
 }
 
 const TodoForm:React.FC<AddTodo> = ({ textInput }) => {
-  
   const [ value , setValue ] = useState('');
   const inputRef = useRef<HTMLInputElement>(null)
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -46,14 +44,11 @@ const TodoForm:React.FC<AddTodo> = ({ textInput }) => {
 }
 
 const Score:React.FC = () => {
-
   const [todos, setTodos] = useState<SingleTodo[]>([
     { text: "Learn about React" , isCompleted: false},
     { text: "Meet friend for lunch" , isCompleted: false},
     { text: "Build really cool todo app" , isCompleted: false}
   ]);
-
-  
 
   const addTodo = (text:string) => {
     const newTodos = [...todos , { text }];
